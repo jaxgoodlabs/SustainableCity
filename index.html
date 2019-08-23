@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>CMU Data</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<style>
+
+/* Style your toggle buttons */
+#menu {
+background: #252525;
+position: absolute;
+z-index: 1;
+top: 10px;
+right: 10px;
+border-radius: 3px;
+width: 120px;
+border: 1px solid rgba(0,0,0,0.4);
+font-family: 'Open Sans', sans-serif;
+}
+ 
+#menu a {
+font-size: 13px;
+color: #f9f9f9;
+display: block;
+margin: 0;
+padding: 0;
+padding: 10px;
+text-decoration: none;
+border-bottom: 1px solid rgba(0,0,0,0.25);
+text-align: center;
+}
+ 
+#menu a:last-child {
+border: none;
+}
+ 
+#menu a:hover {
+background-color: #252525;
+color: #f9f9f9;
+}
+ 
+#menu a.active {
+background-color: #01665e;
+color: #f9f9f9;
+}
+
+ 
+#menu a.active:hover {
+background: #3074a4;
+}
+
+/* Styling your pop-up */
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  font: 400 12px/20px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+  padding: 2;
+  /*controling transparency and color of pop-up */
+  background-color: rgba(255,255,255,.75);
+}
+
+.mapboxgl-popup-content-wrapper {
+  padding: 5%;
+}
+
+
+</style>
+
+<nav id="menu"></nav>
+<div id='map'></div>
+
+<script>
+
+//Mapbox Access Tokens
+mapboxgl.accessToken = 'pk.eyJ1IjoicGNhbXBiZTIiLCJhIjoiY2p6bjh0eGpjMDFubjNscDFoeGUwNzR3aCJ9.WKN9T3uuCRA73azeK_C_Uw';
+
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/pcampbe2/cjzlcgzie5kcs1crua06vu7h6', // stylesheet location
+    center: [-79.942829, 40.443399], // starting position [lng, lat] 
+    pitch: 45, // pitch in degrees
+    bearing: -180, // bearing in degrees
+    zoom: 15 // starting zoom 
+});
+
+//Creating Layers to toggle on and off
+
+var toggleableLayerIds = [ 'CO2 Emissions'];
+ 
+for (var i = 0; i < toggleableLayerIds.length; i++) {
+var id = toggleableLayerIds[i];
+ 
+var link = document.createElement('a');
+link.href = '#';
+link.className = 'active';
+link.textContent = id;
+ 
+link.onclick = function (e) {
+var clickedLayer = this.textContent;
+e.preventDefault();
+e.stopPropagation();
+ 
+var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+ 
+if (visibility === 'visible' || visibility === undefined) {
+map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+this.className = '';
+} else {
+this.className = 'active';
+map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+}
+};
+ 
+var layers = document.getElementById('menu');
+layers.appendChild(link);
+}
+
+map.on('load', function() {
+
+//Loading 3D layer -- CMU Emissions 
+ map.on('click', function(e) {
+  var features = map.queryRenderedFeatures(e.point, {
+    layers: ['CMU3d'] // replace this with the name of the layer
+  });
+  
+  if (!features.length) {
+    return;
+  }
+  var feature = features[0];
+
+});
+
+
+//initialize popup 
+
+var popup = new mapboxgl.Popup({ 
+    closeButton: false,
+    closeOnClick: false,
+});
+
+ // When a click event occurs on a feature in the states layer, open a popup at the
+// location of the click, with description HTML from its properties.
+map.on('mouseenter', 'CO2 Emissions', function (e) {
+//change the cursor style as a UI indicator
+map.getCanvas().style.cursor = 'pointer';
+
+// Create variables for your tabular information 
+var aggregate = e.features[0].properties.CO2e_Emissions_Aggregate;
+var agg_freq = e.features[0].properties.CO2e_Emissions_Aggregate_Frq;
+
+// Populate the popup and set its coordinates
+// based on the feature found.
+popup.setLngLat(e.lngLat)
+.setHTML('<strong> Aggregate CO2 Emissions: </strong>'+ aggregate + '<p> <strong> Frequency of CO2 emissions: </strong>' + agg_freq + '</p>')
+.addTo(map);
+});
+
+ 
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'CO2 Emissions', function () {
+map.getCanvas().style.cursor = '';
+});
+
+});
+
+
+
+</script>
+
+</body>
+</html>
