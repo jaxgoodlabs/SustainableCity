@@ -4,8 +4,8 @@
     <meta charset='utf-8' />
     <title>CMU Data</title>
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -54,7 +54,6 @@ background-color: #01665e;
 color: #f9f9f9;
 }
 
- 
 #menu a.active:hover {
 background: #3074a4;
 }
@@ -97,7 +96,7 @@ var map = new mapboxgl.Map({
 
 //Creating Layers to toggle on and off
 
-var toggleableLayerIds = ['CO2 Emissions'];
+var toggleableLayerIds = ['master-pm-geocodes-bldg-join_increase', 'master-pm-geocodes-bldg-join-decrease'];
  
 for (var i = 0; i < toggleableLayerIds.length; i++) {
 var id = toggleableLayerIds[i];
@@ -129,10 +128,10 @@ layers.appendChild(link);
 
 map.on('load', function() {
 
-//Loading 3D layer -- CMU Emissions 
+//Loading 3D layer -- Percent Change in CO2 Emissions 2017-2018 
  map.on('click', function(e) {
   var features = map.queryRenderedFeatures(e.point, {
-    layers: ['CMU3d'] // replace this with the name of the layer
+    layers: ['master-pm-geocodes-bldg-join_increase'] // replace this with the name of the layer
   });
   
   if (!features.length) {
@@ -147,12 +146,12 @@ map.on('load', function() {
 
 var popup = new mapboxgl.Popup({ 
 		closeButton: false,
-    closeOnClick: false,
+    closeOnClick: true,
 });
 
  // When a click event occurs on a feature in the states layer, open a popup at the
 // location of the click, with description HTML from its properties.
-map.on('mouseenter', 'CO2 Emissions', function (e) {
+map.on('mouseenter', 'master-pm-geocodes-bldg-join_increase', function (e) {
 //change the cursor style as a UI indicator
 map.getCanvas().style.cursor = 'pointer';
 
@@ -169,18 +168,17 @@ var source_eui = e.features[0].properties.PERCENT_CHANGE_SOURCE_EUI;
 // Populate the popup and set its coordinates
 // based on the feature found.
 popup.setLngLat(e.lngLat)
-.setHTML('<strong> Building Name: </strong>' + bldg_name + '<p> <strong> Address: </strong>' + address + '<strong> Year Built: </strong>' + year_blt + '<strong> Property GFA (sqft): </strong>' + property_gfa + '<p> <strong> Change in Emissions (metric tons CO2e): </strong>' + emissions_change + '<p> <strong> Site EUI: </strong>' + site_eui + '</p>')
+.setHTML('<strong> Building Name: </strong>' + bldg_name + '<p> <strong> Address: </strong>' + address + '<p><strong> Year Built: </strong>' + year_blt + '<p><strong> Property GFA (sqft): </strong>' + property_gfa + '<p> <strong> Change in Emissions (metric tons CO2e): </strong>' + emissions_change + '<p> <strong> Site EUI: </strong>' + site_eui + '</p>')
 .addTo(map);
 });
 
  
 // Change it back to a pointer when it leaves.
-map.on('mouseleave', 'CO2 Emissions', function () {
+map.on('mouseleave', 'master-pm-geocodes-bldg-join_increase', function () {
 map.getCanvas().style.cursor = '';
 });
 
 });
-
 
 
 </script>
