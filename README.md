@@ -101,8 +101,10 @@ A complete list of data sources used for this project along with descriptions of
 
 ### References
 
-Clay, Karen, Neil Donahue, Dave Dzombak, Vivian Loftness, Nick Muller, Illah Nourbakhsh, Illah, Ed Rubin, and Joel Tarr, eds. “The Future of Sustainability Education, Research and Practice at CMU: Report of the Faculty Senate Ad Hoc Committee on Sustainability.” Carnegie Mellon University. February 2019.
+Clay, Karen, Neil Donahue, Dave Dzombak, Vivian Loftness, Nick Muller, Illah Nourbakhsh, Illah, Ed Rubin, and Joel Tarr, eds. “The    Future of Sustainability Education, Research and Practice at CMU: Report of the Faculty Senate Ad Hoc Committee on Sustainability.” Carnegie Mellon University. February 2019.
+
 Department of Engineering and Public Policy and Department of Social and Decision Sciences “Pittsburgh to Paris: Reducing the Carbon Footprint of Carnegie Mellon University.” Carnegie Mellon University. December 2017.
+
 Maron, Mikel. “Mapbox Education – CMU Presentation.” PowerPoint Presentation. [https://docs.google.com/presentation/d/1sE0KsPb9ICbG7Ne1TucivOEmWDcTQuVjBH2cNRIytcU/edit?usp=sharing](https://docs.google.com/presentation/d/1sE0KsPb9ICbG7Ne1TucivOEmWDcTQuVjBH2cNRIytcU/edit?usp=sharing). Accessed April 25, 2019.
 
 ### Project Updates
