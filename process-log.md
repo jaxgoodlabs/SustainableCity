@@ -1,8 +1,8 @@
-#PITTSBURGH BUILDING BENCHMARKING PROJECT: PROCESS LOG
+# PITTSBURGH BUILDING BENCHMARKING PROJECT: PROCESS LOG
 
-####City Planning Department’s Division of Sustainability and Resilience
+#### City Planning Department’s Division of Sustainability and Resilience
 
-####Summer, 2019
+#### Summer, 2019
 
 **July 1-10, 2019: Data cleaning (Round 1)**
 - Decided how to organize Energy Star Portfolio Manager source data (.csv) in Excel
