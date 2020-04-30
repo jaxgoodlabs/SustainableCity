@@ -56,7 +56,7 @@
   -	Archive original source files
 
 *Data cleaning protocol for exported datasets*
--	Cleaning protocol for “overview (12)” 
+-	Cleaning protocol for “overview (12)”
   -	Move original file into ‘Data’ folder in ArcGIS project directory
   -	Delete any title (non-header) rows outside of data table or convert to data table fields
   -	Keep all existing data fields
@@ -65,8 +65,7 @@
     -	Not all records match. Export to ArcGIS or Access to join tables
   -	Save file as “CityBuildingEnergyData_Cleaned” (.csv)
   -	Archive original source file
-
--	Cleaning protocol for “Data Request_Pittsburgh Benchmarking Compliance Report-Year 2 (2)” 
+-	Cleaning protocol for “Data Request_Pittsburgh Benchmarking Compliance Report-Year 2 (2)”
   -	Move original file into ‘Data’ folder in ArcGIS project directory
   -	Delete any title (non-header) rows outside of data table or convert to data table fields
   -	Keep all existing data fields
@@ -74,16 +73,16 @@
   -	Add missing PBBID by cross-referencing Compliance Data
   -	Standardize data fields across all tabs (if applicable)
   -	Delete extraneous tabs or merge all tabs into single worksheet representing one year’s data (if applicable)
-  -	Rename field “Pittsburgh Building Benchmarking ID” to “PBBID_1” (PBBID_1 will serve as the join field in ArcGIS for merging with compliance data table )
+  -	Rename field “Pittsburgh Building Benchmarking ID” to “PBBID_1” (PBBID_1 will serve as the join field in ArcGIS for merging with compliance data table)
   -	Find/replace all occurrences of “Not Applicable: Standalone Property”, “NA”, “Not Available”, and “None” to empty (null) cells
   -	Save file as “[Original file name]_Cleaned” (.csv)
   -	Archive original source file
 -	Import cleaned data into ArcGIS project: PittsburghBenchmarkingMap
--	Emailed Geoffrey Arnold (geoffrey.arnold@pittsburghpa.gov) from I&P about data cleaning protocol for Compliance data
-  -	Received file “Final_Building_Benchmarking” 
--	Emailed Seth Fitzsimmons (seth@mojodna.net) from City Energy Project about data cleaning protocol for Energy Star Portfolio Manager data.
-  -	Referred to Jim Stanley (jim@stamen.com) at Stamen
-  -	Referred to Eric Brelsford (ebrelsford@stamen.com) at Stamen
+-	Emailed [Anonymous] from I&P about data cleaning protocol for Compliance data
+  -	Received file “Final_Building_Benchmarking”
+-	Emailed [Anonymous] from City Energy Project about data cleaning protocol for Energy Star Portfolio Manager data.
+  -	Referred to [Anonymous] at [Anonymous]
+  -	Referred to [Anonymous] at [Anonymous]
 
 *Protocol for Access*
 -	Create a new database in Access. Save database as “Pittsburgh_Building_Benchmarking”
