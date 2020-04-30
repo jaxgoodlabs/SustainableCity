@@ -84,7 +84,7 @@
 -	Emailed Seth Fitzsimmons (seth@mojodna.net) from City Energy Project about data cleaning protocol for Energy Star Portfolio Manager data.
   -	Referred to Jim Stanley (jim@stamen.com) at Stamen
   -	Referred to Eric Brelsford (ebrelsford@stamen.com) at Stamen
- 
+
 *Protocol for Access*
 -	Create a new database in Access. Save database as “Pittsburgh_Building_Benchmarking”
 -	Import data tables from Excel (files must be in .xls format)
