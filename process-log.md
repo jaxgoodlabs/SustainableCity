@@ -191,17 +191,16 @@
 
 *Join Troubleshoot*
 -	Inner join between Facilities_Centroids map layer (406 records) and overview2017 and 2018 data (154 records) should yield 152 records (2 unmatched). Name resulting layers FacilitiesCentroids_2017PM_Join and FacilitiesCentroids_2018PM_Join.
-  -	Result: Action results in only 146 records. 9 records unmatched. 8 of these are partially unmatched while the remaining 1 record (Schenley Museum) is completely unmatched. 
-    -	Test 1: Fix property name and/or address fields in respective data sets. All 8 partial errors are in the address field. Correct these 8 records, run inner join. 
--	Result: Even with all the address fields corrected, still yields only 146 records when joined on Property Name field. Near perfect join (null record for Boat Safety Building) between Centroid and Centroid_PM2017_Join layers. Problem seems to be with Overview2017 layer. 
+  - Result: Action results in only 146 records. 9 records unmatched. 8 of these are partially unmatched while the remaining 1 record (Schenley Museum) is completely unmatched.
+    -	Test 1: Fix property name and/or address fields in respective data sets. All 8 partial errors are in the address field. Correct these 8 records, run inner join.
+-	Result: Even with all the address fields corrected, still yields only 146 records when joined on Property Name field. Near perfect join (null record for Boat Safety Building) between Centroid and Centroid_PM2017_Join layers. Problem seems to be with Overview2017 layer.
   -	Test 1b: Try inner join on address field.
-    -	Result: This results in 0 records returned. 
+    -	Result: This results in 0 records returned.
 -	Test 1c: In Excel, use Proper function to convert Centroids Addresses to proper capitalization format. Rerun inner join using Address field.
   -	Result: This results in 168 records returned. This likely owes to duplicate address names (without street number).
   -	Test 1d: Rerun inner join on Property Name field.
-	Result: This results in 153 records. (If records are missing, be sure to check for internal duplicates creating false matches and capitalization.)
-
--	Inner spatial join between PittsburghBuildings (116,120 records records) map layer CityFacilities_2017PM_Join and CityFacilities_2018PM_Join (153 records each). Action should result in 153 records. Name resulting layers CityBuildings_2017PM and CityBuildings_2018PM, respectively. 
+    -	Result: This results in 153 records. (If records are missing, be sure to check for internal duplicates creating false matches and capitalization.)
+-	Inner spatial join between PittsburghBuildings (116,120 records records) map layer CityFacilities_2017PM_Join and CityFacilities_2018PM_Join (153 records each). Action should result in 153 records. Name resulting layers CityBuildings_2017PM and CityBuildings_2018PM, respectively.
   -	Action results in 139 records (153-139 = 14 missing records).
     - Missing records include:
       - Arlington Field Lights Building	0 Sterling St
@@ -218,15 +217,14 @@
       - Schenley Park Skating Rink Building	10341 Overlook Dr
       - West Penn Pool Building	470 Paulowna St
       - West Penn Pool Entrance Building	470 Paulowna St
-
 -	If necessary, use Calculate field to convert Total GHG Emissions data type from text to double (numeric).
 -	If necessary, use Calculate field to convert Site and Source EUI fields from text to double (numberic).
 -	Export CityBuildings_2017PM and CityBuildings_2018PM into project geodatabase.
 -	Change symbology to graduated colors using Total GHG emissions field and 6 classes Orange-Red (Natural Breaks, Jenks).
--	Perform inner join between Facilities shapefile (406 records) and CityFacilities_2017PM and CityFacilities_2018PM (154 records each). Actions results in 153 records. Name the resulting layer CityBuildings_2017PM_Supplement. 
+-	Perform inner join between Facilities shapefile (406 records) and CityFacilities_2017PM and CityFacilities_2018PM (154 records each). Actions results in 153 records. Name the resulting layer CityBuildings_2017PM_Supplement.
 -	Export CityBuildings_2017PM_Supplement and CityBuildings_2018PM_Supplement map layers to project geodatabase.
 -	Change symbology to graduated colors using Total GHG emissions field and 6 classes Orange-Red (Natural Breaks, Jenks).
--	Move CityBuildings_2017PM_Supplement and CityBuildings_2018PM_Supplement map layers just below CityBuildings_2017 and CityBuildings_2017 map layers. 
+-	Move CityBuildings_2017PM_Supplement and CityBuildings_2018PM_Supplement map layers just below CityBuildings_2017 and CityBuildings_2017 map layers.
   -	Optional: Use definition query to only display 14 missing buildings listed above.
 
 **Aug. 21, 2019 – Visualize City Buildings Energy Use in Mapbox**
