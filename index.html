@@ -1,189 +1,186 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8' />
-    <title>CMU Data</title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
-    <style>
-        body { margin:0; padding:0; }
-        #map { position:absolute; top:0; bottom:0; width:100%; }
-    </style>
-</head>
-<body>
+	<head>
+	    <meta charset='utf-8' />
+	    <title>CMU Data</title>
+	    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+	    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.js'></script>
+	    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.3.1/mapbox-gl.css' rel='stylesheet' />
+	    <style>
+		body { margin:0; padding:0; }
+		#map { position:absolute; top:0; bottom:0; width:100%; }
+	    </style>
+	</head>
+	
+	<body>
 
-<style>
+	    <style>
 
-/* Style your toggle buttons */
-#menu {
-background: #252525;
-position: absolute;
-z-index: 1;
-top: 10px;
-right: 10px;
-border-radius: 3px;
-width: 120px;
-border: 1px solid rgba(0,0,0,0.4);
-font-family: 'Open Sans', sans-serif;
-opacity: 0.9
-}
- 
-#menu a {
-font-size: 13px;
-color: #f9f9f9;
-display: block;
-margin: 0;
-padding: 0;
-padding: 10px;
-text-decoration: none;
-border-bottom: 1px solid rgba(0,0,0,0.25);
-text-align: center;
-}
- 
-#menu a:last-child {
-border: none;
-}
- 
-#menu a:hover {
-background-color: #252525;
-color: #f9f9f9;
-}
- 
-#menu a.active {
-background-color: #01665e;
-color: #f9f9f9;
-}
+		/* Style your toggle buttons */
+		#menu {
+		background: #252525;
+		position: absolute;
+		z-index: 1;
+		top: 10px;
+		right: 10px;
+		border-radius: 3px;
+		width: 120px;
+		border: 1px solid rgba(0,0,0,0.4);
+		font-family: 'Open Sans', sans-serif;
+		opacity: 0.9
+		}
 
-#menu a.active:hover {
-background: #3074a4;
-}
+		#menu a {
+		font-size: 13px;
+		color: #f9f9f9;
+		display: block;
+		margin: 0;
+		padding: 0;
+		padding: 10px;
+		text-decoration: none;
+		border-bottom: 1px solid rgba(0,0,0,0.25);
+		text-align: center;
+		}
 
-/* Styling your pop-up */
-.mapboxgl-popup-close-button {
-  display: none;
-}
+		#menu a:last-child {
+		border: none;
+		}
 
-.mapboxgl-popup-content {
-  font: 400 12px/20px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
-  padding: 2;
-  /*controling transparency and color of pop-up */
-  background-color: rgba(255,255,255,.75);
-}
+		#menu a:hover {
+		background-color: #252525;
+		color: #f9f9f9;
+		}
 
-.mapboxgl-popup-content-wrapper {
-  padding: 5%;
-}
+		#menu a.active {
+		background-color: #01665e;
+		color: #f9f9f9;
+		}
 
+		#menu a.active:hover {
+		background: #3074a4;
+		}
 
-</style>
+		/* Styling your pop-up */
+		.mapboxgl-popup-close-button {
+		  display: none;
+		}
 
-<nav id="menu"></nav>
-<div id='map'></div>
+		.mapboxgl-popup-content {
+		  font: 400 12px/20px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+		  padding: 2;
+		  /*controling transparency and color of pop-up */
+		  background-color: rgba(255,255,255,.75);
+		}
 
-<script>
+		.mapboxgl-popup-content-wrapper {
+		  padding: 5%;
+		}
 
-//Mapbox Access Tokens
-mapboxgl.accessToken = 'pk.eyJ1IjoicGNhbXBiZTIiLCJhIjoiY2p1cjRmcWFoMW1lMjQ0bGRsMXg0azhtdCJ9.rHW0CMEBOAAnhjrsjtD_VQ';
+	    </style>
 
-var map = new mapboxgl.Map({
-    container: 'map', // container id
-    style: 'mapbox://styles/pcampbe2/ck2khg3ec1r9b1crttpmx1d7a', // stylesheet location
-    center: [-79.9995355, 40.4402176], // starting position [lng, lat] 
-    pitch: 45, // pitch in degrees
-    bearing: 25, // bearing in degrees
-    zoom: 14 // starting zoom 
-});
+		<nav id="menu"></nav>
+		<div id='map'></div>
 
-//Creating Layers to toggle on and off
+	    <script>
 
-var toggleableLayerIds = ['Increased CO2 Emissions', 'Decreased CO2 Emissions'];
- 
-for (var i = 0; i < toggleableLayerIds.length; i++) {
-var id = toggleableLayerIds[i];
- 
-var link = document.createElement('a');
-link.href = '#';
-link.className = 'active';
-link.textContent = id;
- 
-link.onclick = function (e) {
-var clickedLayer = this.textContent;
-e.preventDefault();
-e.stopPropagation();
- 
-var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
- 
-if (visibility === 'visible' || visibility === undefined) {
-map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-this.className = '';
-} else {
-this.className = 'active';
-map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-}
-};
- 
-var layers = document.getElementById('menu');
-layers.appendChild(link);
-}
+		//Mapbox Access Tokens
+		mapboxgl.accessToken = 'pk.eyJ1IjoicGNhbXBiZTIiLCJhIjoiY2p1cjRmcWFoMW1lMjQ0bGRsMXg0azhtdCJ9.rHW0CMEBOAAnhjrsjtD_VQ';
 
-map.on('load', function() {
+		var map = new mapboxgl.Map({
+		    container: 'map', // container id
+		    style: 'mapbox://styles/pcampbe2/ck2khg3ec1r9b1crttpmx1d7a', // stylesheet location
+		    center: [-79.9995355, 40.4402176], // starting position [lng, lat] 
+		    pitch: 45, // pitch in degrees
+		    bearing: 25, // bearing in degrees
+		    zoom: 14 // starting zoom 
+		});
 
-//Loading 3D layer -- Percent Change in CO2 Emissions 2017-2018 
- map.on('click', function(e) {
-  var features = map.queryRenderedFeatures(e.point, {
-    layers: ['Percent Change CO2'] // replace this with the name of the layer
-  });
-  
-  if (!features.length) {
-    return;
-  }
-  var feature = features[0];
+		//Creating Layers to toggle on and off
 
-});
+		var toggleableLayerIds = ['Increased CO2 Emissions', 'Decreased CO2 Emissions'];
 
+		for (var i = 0; i < toggleableLayerIds.length; i++) {
+		var id = toggleableLayerIds[i];
 
-//initialize popup 
+		var link = document.createElement('a');
+		link.href = '#';
+		link.className = 'active';
+		link.textContent = id;
 
-var popup = new mapboxgl.Popup({ 
-		closeButton: false,
-    closeOnClick: true,
-});
+		link.onclick = function (e) {
+		var clickedLayer = this.textContent;
+		e.preventDefault();
+		e.stopPropagation();
 
- // When a click event occurs on a feature in the states layer, open a popup at the
-// location of the click, with description HTML from its properties.
-map.on('mouseenter', 'Percent Change CO2', function (e) {
-//change the cursor style as a UI indicator
-map.getCanvas().style.cursor = 'pointer';
+		var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
 
-// Create variables for your tabular information 
-var bldg_name = e.features[0].properties.PROPERTY_NAME;
-var address = e.features[0].properties.ADDRESS_PROPER;
-var year_blt = e.features[0].properties.YEAR_BUILT;
-var property_gfa = e.features[0].properties.PROPERTY_GFA;
-var emissions_change = e.features[0].properties.PERCENT_CHANGE_CO2e_NUM;
-var site_eui = e.features[0].properties.PERCENT_CHANGE_SITE_EUI;
-var source_eui = e.features[0].properties.PERCENT_CHANGE_SOURCE_EUI;
+		if (visibility === 'visible' || visibility === undefined) {
+		map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+		this.className = '';
+		} else {
+		this.className = 'active';
+		map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+		}
+		};
+
+		var layers = document.getElementById('menu');
+		layers.appendChild(link);
+		}
+
+		map.on('load', function() {
+
+		//Loading 3D layer -- Percent Change in CO2 Emissions 2017-2018 
+		 map.on('click', function(e) {
+		  var features = map.queryRenderedFeatures(e.point, {
+		    layers: ['Percent Change CO2'] // replace this with the name of the layer
+		  });
+
+		  if (!features.length) {
+		    return;
+		  }
+		  var feature = features[0];
+
+		});
 
 
-// Populate the popup and set its coordinates
-// based on the feature found.
-popup.setLngLat(e.lngLat)
-.setHTML('<strong> Building Name: </strong>' + bldg_name + '<p> <strong> Address: </strong>' + address + '<p><strong> Year Built: </strong>' + year_blt + '<p><strong> Property GFA (sqft): </strong>' + property_gfa + '<p> <strong> Change in Emissions (metric tons CO2e): </strong>' + emissions_change + '<p> <strong> Site EUI: </strong>' + site_eui + '</p>')
-.addTo(map);
-});
+		//initialize popup 
 
- 
-// Change it back to a pointer when it leaves.
-map.on('mouseleave', 'Percent Change CO2', function () {
-map.getCanvas().style.cursor = '';
-});
+		var popup = new mapboxgl.Popup({ 
+				closeButton: false,
+		    closeOnClick: true,
+		});
 
-});
+		 // When a click event occurs on a feature in the states layer, open a popup at the
+		// location of the click, with description HTML from its properties.
+		map.on('mouseenter', 'Percent Change CO2', function (e) {
+		//change the cursor style as a UI indicator
+		map.getCanvas().style.cursor = 'pointer';
+
+		// Create variables for your tabular information 
+		var bldg_name = e.features[0].properties.PROPERTY_NAME;
+		var address = e.features[0].properties.ADDRESS_PROPER;
+		var year_blt = e.features[0].properties.YEAR_BUILT;
+		var property_gfa = e.features[0].properties.PROPERTY_GFA;
+		var emissions_change = e.features[0].properties.PERCENT_CHANGE_CO2e_NUM;
+		var site_eui = e.features[0].properties.PERCENT_CHANGE_SITE_EUI;
+		var source_eui = e.features[0].properties.PERCENT_CHANGE_SOURCE_EUI;
 
 
+		// Populate the popup and set its coordinates
+		// based on the feature found.
+		popup.setLngLat(e.lngLat)
+		.setHTML('<strong> Building Name: </strong>' + bldg_name + '<p> <strong> Address: </strong>' + address + '<p><strong> Year Built: </strong>' + year_blt + '<p><strong> Property GFA (sqft): </strong>' + property_gfa + '<p> <strong> Change in Emissions (metric tons CO2e): </strong>' + emissions_change + '<p> <strong> Site EUI: </strong>' + site_eui + '</p>')
+		.addTo(map);
+		});
 
-</script>
 
-</body>
+		// Change it back to a pointer when it leaves.
+		map.on('mouseleave', 'Percent Change CO2', function () {
+		map.getCanvas().style.cursor = '';
+		});
+
+		});
+
+	  </script>
+    </body>
 </html>
